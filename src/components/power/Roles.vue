@@ -7,7 +7,7 @@
       <el-breadcrumb-item>角色列表</el-breadcrumb-item>
     </el-breadcrumb>
 
-    <!-- 卡片视图 -->
+    <!-- 卡片视图区域 -->
     <el-card>
       <!-- 添加角色按钮区域 -->
       <el-row>
@@ -64,7 +64,7 @@
     <!-- 添加角色的对话框 -->
     <el-dialog title="添加角色" :visible.sync="addDialogVisible" width="50%" @close="addDialogClosed">
       <!-- 内容主体区域 -->
-      <el-form :model="addRoleForm" :rules="addRoleFormRules" ref="addRoleFormRef" label-width="90px">
+      <el-form :model="addRoleForm" :rules="addRoleFormRules" ref="addRoleFormRef" label-width="100px">
         <el-form-item label="角色名称:" prop="roleName">
           <el-input v-model="addRoleForm.roleName"></el-input>
         </el-form-item>
@@ -82,7 +82,7 @@
     <!-- 修改角色的对话框 -->
     <el-dialog title="修改角色" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
       <!-- 内容主体区域 -->
-      <el-form :model="editRoleForm" :rules="editRoleFormRules" ref="editRoleFormRef" label-width="90px">
+      <el-form :model="editRoleForm" :rules="editRoleFormRules" ref="editRoleFormRef" label-width="100px">
         <el-form-item label="角色名称:" prop="roleName">
           <el-input v-model="editRoleForm.roleName"></el-input>
         </el-form-item>
@@ -205,8 +205,9 @@ export default {
       this.$refs.editRoleFormRef.resetFields()
     },
     // 点击按钮，编辑角色
-    editRole(id) {
+    editRole() {
       this.$refs.editRoleFormRef.validate(async valid => {
+        if (!valid) return
         const { data: res } = await this.$http.put(`roles/${this.editRoleForm.roleId}`, {
           roleName: this.editRoleForm.roleName,
           roleDesc: this.editRoleForm.roleDesc

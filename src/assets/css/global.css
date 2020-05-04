@@ -23,3 +23,8 @@ html, body, #app {
 .el-pagination {
   margin-top: 15px;
 }
+
+/* 解决 el-cascader 选项过高*/
+.el-cascader-menu{
+  height: 300px;
+}
